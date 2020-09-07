@@ -36,9 +36,11 @@ public class HelloWorldTest {
         actions.moveToElement(webElement).perform();
         actions.click(webElement).perform();
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, 15);
-        webDriverWait.until(ExpectedConditions.invisibilityOf(webElement));
-        WebElement webElement1 = webDriver.findElement(By.id("finish")).findElement(By.tagName("h4"));
-        Assert.assertTrue(webElement1.getText().contains("Hello World!"));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h4[contains(text(),'Hello World!')]")));
+
+        Assert.assertTrue(webDriver.getPageSource().contains("Hello World"));
+
     }
 
 }
+
